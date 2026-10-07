@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://moneda.gd" id="1_3fws3"]
+[ext_resource type="Texture2D" path="res://assets/tile_0151.png" id="2_iubt5"]
+[ext_resource type="Texture2D" path="res://assets/tile_0152.png" id="3_n5w0r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3bec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iubt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n5w0r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xcrop"]
+radius = 6.0
+
+[node name="Moneda" type="Area2D"]
+script = ExtResource("1_3fws3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y3bec")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xcrop")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

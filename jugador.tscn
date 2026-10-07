@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://jugador.gd" id="1_8o684"]
+[ext_resource type="Texture2D" path="res://assets/Characters/tile_0000.png" id="2_ukil5"]
+[ext_resource type="Texture2D" path="res://assets/Characters/tile_0001.png" id="3_7st5j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvhml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ukil5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7st5j")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ukil5")
+}],
+"loop": true,
+"name": &"quieto",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btb33"]
+size = Vector2(14, 20)
+
+[node name="Jugador" type="CharacterBody2D"]
+script = ExtResource("1_8o684")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cvhml")
+animation = &"quieto"
+autoplay = "quieto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_btb33")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 720
+limit_bottom = 216
+position_smoothing_enabled = true
